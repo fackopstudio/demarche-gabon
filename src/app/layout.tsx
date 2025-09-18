@@ -95,6 +95,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={`${inter.variable} ${poppins.variable}`}>
+      <head>
+        <link rel="icon" href="/demarches-simplifiees-logo/demarches-simplifiees-logo.png" type="image" />
+      </head>
       <body className="font-sans antialiased">
         {children}
       </body>
