@@ -95,9 +95,13 @@ export default function Steps() {
 
                   {/* Contenu de l'étape */}
                   <div className="space-y-4">
-                    <h3 className="text-xl font-bold text-slate-900 group-hover:bg-gradient-text group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
-                      {step.title}
-                    </h3>
+                    <div className="relative pb-4">
+                      <h3 className="text-xl font-bold text-slate-900 group-hover:bg-gradient-text group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                        {step.title}
+                      </h3>
+                      {/* Ligne décorative sous le titre */}
+                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-0.5 bg-gradient-to-r from-primary-200 to-secondary-200 rounded-full"></div>
+                    </div>
                     <p className="text-slate-600 leading-relaxed">
                       {step.description}
                     </p>

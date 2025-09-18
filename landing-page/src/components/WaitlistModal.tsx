@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { X, Mail, User, Building2, CheckCircle, Clock } from 'lucide-react';
+import { X, Mail, User, Building2, CheckCircle, Clock, Phone } from 'lucide-react';
 
 interface WaitlistModalProps {
   isOpen: boolean;
@@ -54,7 +54,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="flex overflow-y-auto fixed inset-0 z-50 justify-center items-center p-2 backdrop-blur-sm bg-black/50 sm:p-4"
+          className="flex overflow-y-auto fixed inset-0 z-[99999] justify-center items-center p-2 backdrop-blur-sm bg-black/50 sm:p-4"
           onClick={onClose}
         >
         <motion.div
@@ -84,9 +84,18 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                   <Clock className="w-6 h-6 sm:w-8 sm:h-8" />
                 </motion.div>
                 <h2 className="mb-2 text-xl font-bold sm:text-2xl">Rejoignez la liste d&apos;attente</h2>
-                <p className="text-sm text-white/90 sm:text-base">
+                <p className="mb-4 text-sm text-white/90 sm:text-base">
                   Soyez parmi les premiers à découvrir la plateforme de démarches simplifiées du Gabon
                 </p>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="flex justify-center items-center space-x-2 text-white/90"
+                >
+                  <Phone className="w-4 h-4" />
+                  <span className="text-sm font-medium">077538914</span>
+                </motion.div>
               </div>
             </div>
 

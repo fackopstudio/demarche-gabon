@@ -1,14 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import WaitlistModal from './WaitlistModal';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -26,11 +24,16 @@ export default function Navbar() {
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <motion.div 
+          <motion.a
+            href="#accueil"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex items-center space-x-3"
+            className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity duration-300"
+            onClick={() => {
+              // Fermer le menu mobile si ouvert
+              setIsMenuOpen(false);
+            }}
           >
             <div className="relative">
               <Image
@@ -48,7 +51,7 @@ export default function Navbar() {
               </span>
               <span className="-mt-1 text-xs text-slate-600">Gabon</span>
             </div>
-          </motion.div>
+          </motion.a>
 
           {/* Desktop Menu */}
           <motion.div 
@@ -70,18 +73,21 @@ export default function Navbar() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-primary transition-all duration-300 group-hover:w-full"></span>
               </motion.a>
             ))}
-            <motion.button
+            <motion.a
+              href="https://fackop.com"
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: 0.7 }}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => setIsWaitlistOpen(true)}
-              className="overflow-hidden relative px-6 py-2 font-semibold text-white rounded-xl shadow-lg transition-all duration-300 bg-gradient-primary hover:shadow-xl group"
+              className="overflow-hidden relative px-6 py-2 font-semibold text-white rounded-xl shadow-lg transition-all duration-300 bg-gradient-primary hover:shadow-xl group flex items-center space-x-2"
             >
               <div className="absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 from-primary-600 to-secondary-600 group-hover:opacity-100"></div>
-              <span className="relative z-10">Liste d&apos;attente</span>
-            </motion.button>
+              <span className="relative z-10">Suivez-nous</span>
+              <ExternalLink className="w-4 h-4 relative z-10" />
+            </motion.a>
           </motion.div>
 
           {/* Mobile Menu Button */}
@@ -125,20 +131,21 @@ export default function Navbar() {
                   </motion.a>
                 ))}
                 <div className="pt-2">
-                  <motion.button
+                  <motion.a
+                    href="https://fackop.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.4 }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                      setIsWaitlistOpen(true);
-                    }}
-                    className="px-6 py-3 w-full font-semibold text-white rounded-xl shadow-lg transition-all duration-300 bg-gradient-primary hover:shadow-xl"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="px-6 py-3 w-full font-semibold text-white rounded-xl shadow-lg transition-all duration-300 bg-gradient-primary hover:shadow-xl flex items-center justify-center space-x-2"
                   >
-                    Liste d&apos;attente
-                  </motion.button>
+                    <span>Suivez-nous</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </motion.a>
                 </div>
               </div>
             </motion.div>
@@ -146,11 +153,6 @@ export default function Navbar() {
         </AnimatePresence>
       </div>
 
-      {/* Modal de liste d'attente */}
-      <WaitlistModal 
-        isOpen={isWaitlistOpen} 
-        onClose={() => setIsWaitlistOpen(false)} 
-      />
     </nav>
   );
 }

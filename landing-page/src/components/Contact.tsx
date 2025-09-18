@@ -52,7 +52,7 @@ export default function Contact() {
     {
       icon: Phone,
       title: 'Téléphone',
-      value: '+241 01 23 45 67',
+      value: '077538914',
       description: 'Lun-Ven 8h-17h'
     },
     {
